@@ -1,4 +1,4 @@
-package com.lollipop.spider.api;
+package com.lollipop.spider.net;
 
 import org.jsoup.nodes.Document;
 

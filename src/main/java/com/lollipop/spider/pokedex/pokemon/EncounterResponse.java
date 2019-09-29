@@ -1,6 +1,6 @@
 package com.lollipop.spider.pokedex.pokemon;
 
-import com.lollipop.spider.api.BaseSpiderHandler;
+import com.lollipop.spider.net.BaseSpiderHandler;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -23,15 +23,16 @@ public class EncounterResponse {
         @Override
         public EncounterResponse parseData(Document document) {
             try {
+                Elements firstHead = document.select("h1#firstHeading");
                 List<Encounter> encounters = new ArrayList<>();
                 Element e1 = document.getElementById("获得方式").parent().nextElementSibling();
                 Elements e2 = e1.select(".bgwhite");
                 for (Element e3 : e2) {
                     Encounter encounter = new Encounter();
                     Elements e4 = e3.children();
-                    encounter.setGameVersion(e4.get(0).text());
-                    encounter.setArea(e4.get(0).text());
-                    encounter.setGameVersion(e4.get(1).text());
+                    encounter.setPokeName(firstHead.text());
+                    encounter.setGameVersion(e4.get(0).text().replace("  ", "|").replace(" ", ""));
+                    encounter.setArea(e4.get(1).text());
                     encounter.setMethod(e4.get(2).text());
                     encounter.setRemark(e4.get(3).text());
                     encounters.add(encounter);
@@ -44,7 +45,7 @@ public class EncounterResponse {
     }
 
     @Data
-    private static class Encounter {
+    public static class Encounter {
         private Long id;
         private Integer pokeId;
         private String pokeName;
