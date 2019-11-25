@@ -105,16 +105,9 @@
 
 
         <dependency>
-            <groupId>me.sargunvohra.lib</groupId>
-            <artifactId>pokekotlin</artifactId>
-            <version>2.3.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.9</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>
