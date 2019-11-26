@@ -82,7 +82,6 @@ public class SpiderApplicationTests {
         Workbook excel = new XSSFWorkbook();
         for (int i = 1; i <= 40; ++i) {
             Gen8EncounterResponse response = HandBookApi.gen8Encounter(i, new Gen8EncounterResponse.EncounterHandler());
-            System.out.println(JSON.toJSONString(response));
             ExcelUtils.buildSheet(excel, response.getArea(), response.getData());
         }
 
@@ -91,4 +90,9 @@ public class SpiderApplicationTests {
         fos.close();
     }
 
+    @Test
+    public void test3() throws Exception {
+        Gen8EncounterResponse response = HandBookApi.gen8Encounter(3, new Gen8EncounterResponse.EncounterHandler());
+        System.out.println(JSON.toJSONString(response));
+    }
 }
